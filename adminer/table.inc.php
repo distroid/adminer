@@ -20,7 +20,7 @@ if ($fields) {
 	foreach ($fields as $field) {
 		echo "<tr" . odd() . "><th>" . h($field["field"]);
 		echo "<td><span title='" . h($field["collation"]) . "'>" . h($field["full_type"]) . "</span>";
-		echo ($field["type_values"] ? " ({$field['type_values']})" : "");
+		echo ($field["type_values"] ? " (<i>{$field['type_values']})</i>" : "");
 		echo ($field["null"] ? " <i>NULL</i>" : "");
 		echo ($field["auto_increment"] ? " <i>" . lang('Auto Increment') . "</i>" : "");
 		echo (isset($field["default"]) ? " <span title='" . lang('Default value') . "'>[<b>" . h($field["default"]) . "</b>]</span>" : "");

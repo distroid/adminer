@@ -270,7 +270,7 @@ AND relnamespace = (SELECT oid FROM pg_namespace WHERE nspname = current_schema(
 			'timestamp with time zone' => 'timestamptz',
 		);
 		foreach (get_rows("SELECT a.attname AS field, format_type(a.atttypid, a.atttypmod) AS full_type, d.adsrc AS default, a.attnotnull::int, col_description(c.oid, a.attnum) AS comment,
-			(SELECT string_agg(e.enumlabel::text, ', ') FROM pg_enum e JOIN pg_type t ON e.enumtypid = t.oid WHERE t.typname = format_type(a.atttypid, a.atttypmod)) AS type_values
+			(SELECT string_agg(e.enumlabel::text, ', ') FROM pg_enum e WHERE e.enumtypid = a.atttypid) AS type_values
 FROM pg_class c
 JOIN pg_namespace n ON c.relnamespace = n.oid
 JOIN pg_attribute a ON c.oid = a.attrelid
